@@ -10,13 +10,17 @@ server.get('/', (req, res) => {
 });
 
 server.use(logger);
+server.use(express.json());
 server.use('/api/users', userRouter);
 server.use('/api/posts', postRouter);
 
 //custom middleware
 
 function logger(req, res, next) {
-  console.log(`${req.method} to ${req.path} at `, Date.now());
+  console.log(
+    `${req.method} to http://localhost/5000${req.path} at `,
+    Date.now(),
+  );
   next();
 }
 
